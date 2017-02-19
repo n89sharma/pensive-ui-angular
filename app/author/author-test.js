@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.author module', function() {
+describe('pensive.author module', function() {
 
-  beforeEach(module('myApp.author'));
+  beforeEach(module('pensive.author'));
 
   describe('Author controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var view1Ctrl = $controller('authorCtrl');
-      expect(view1Ctrl).toBeDefined();
+      var authorController = $controller('AuthorController');
+      expect(authorController).toBeDefined();
     }));
 
   });

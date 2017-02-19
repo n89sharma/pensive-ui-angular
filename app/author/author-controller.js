@@ -1,14 +1,8 @@
-'use strict';
+module.exports = function($scope) {
+  this.title = "Webpack Angular Boilerplate";
 
-angular
-    .module('myApp.author', ['ngRoute'])
-    .controller('authorCtrl', AuthorController);
+  $scope.$on('note:changed', function(evt, data) {
+    console.log(data.content);
+  })
 
-function AuthorController(authorApi){
-
-    this.data = authorApi.getAuthor();
-    this.data = {
-        hello:"a"
-    };
-    return this;
 }

@@ -1,9 +1,3 @@
-'use strict';
-
-angular
-    .module('myApp.author')
-    .factory('authorModel', AuthorModelFactory);
-
 function AuthorModelFactory(){
 
     function AuthorModel(data){
