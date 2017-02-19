@@ -1,20 +1,34 @@
-function AuthorApiFactory(AuthorModel, $http){
+angular
+    .module('author')
+    .factory('AuthorApi', function(AuthorModel, $http){
 
-    function AuthorApi(){};
+        var api = this;
 
-    var getAuthor = function (){
-        return $http
-                    .get(getBaseUrl() + getLocalUrl)
-                    .then(new authorModel(response.data));
-    };
+        function AuthorApi(){
+            getAuthor();
+        };
 
-    function getBaseUrl(){
-        return 'http://localhost:8080';
-    }
+        function setData(){
 
-    function getLocalUrl(){
-        return '/authors/58a8c4d02dc92f06e1877f28';
-    }
+        }
 
-    return AuthorApi;
-}
+        function getAuthor(){
+            //new AuthorModel(response.data[0])
+            $http.get('http://echo.jsontest.com/key/value/one/two').then(function(response){
+                        api.authorData = response.data;
+                    }, function(response){
+                        api.authorData = "error";
+                    });
+        };
+
+        function getBaseUrl(){
+            return 'http://localhost:8080';
+        }
+
+        function getLocalUrl(){
+            return '/authors/58a8c4d02dc92f06e1877f28';
+        }
+
+        return AuthorApi;
+
+    });

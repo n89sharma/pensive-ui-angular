@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="pensive">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pensive UI</title>
     <base href="/">
 
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 </head>
-<body ng-app="pensive">
-<ui-view></ui-view>
-<li><a href="/author">author</a></li>
+<body>
+<a href="/author">author</a>
+<div ng-view></div>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="index.js"></script>
+<script src="author/author-controller.js"></script>
+<script src="author/author-api.js"></script>
+<script src="author/author-model.js"></script>
 </body>
 </html>

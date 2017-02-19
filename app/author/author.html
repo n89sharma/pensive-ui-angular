@@ -1,3 +1,16 @@
-<div ng-controller="AuthorController">
-    {{AuthorController.data}}
+<div ng-controller="AuthorController as ctrl">
+    <!--<div>-->
+    <!--<p>{{ctrl.selectedAuthor.lastName}}</p>-->
+    <!--<p>{{ctrl.selectedAuthor.firstName}}</p>-->
+    <!--<p>{{ctrl.selectedAuthor.bookId}}</p>-->
+    <!--</div>-->
+
+    <button ng-clik="getAllAuthors()">Get all authors</button>
+    <div ng-repeat=" author in data track by $index">
+        <p>{{author}}</p>
+        <!--<p>{{author.lastName}}</p>-->
+        <!--<p>{{author.firstName}}</p>-->
+        <!--<p>{{author.bookId}}</p>-->
+        <button ng-click="ctrl.setSelectedAuthor(author)">Select</button>
+    </div>
 </div>
