@@ -5,20 +5,39 @@ angular.module('author', ['ngRoute'])
       controller: 'AuthorController'
     });
   }])
-  .controller('AuthorController', function(AuthorApi, $http, $scope){
+  .controller('AuthorController', function(AuthorModel, $http){
 
-    this.selectedAuthor = {};
+    var controller = {
+        api: {},
+        authorModel: {},
+        selectedAuthor:{},
+        allAuthors:{},
+        getAllAuthors: getAllAuthors,
+        setSelectedAuthor: setSelectedAuthor
+    };
 
-    $scope.getAllAuthors = function(){
+    function controller(){
+        controller.authorModel = new AuthorModel();
+    }
+
+    function getAllAuthors(){
         $http
             .get('http://localhost:8080/authors')
             .then(function(response){
-                $scope.data = response.data;
+                buildAuthorList(response.data)
                 });
-    };
+    }
 
-    this.setSelectedAuthor = function (author){
-        this.selectedAuthor = angular.copy(author);
-    };
+    function buildAuthorList(data){
+        data.forEach(
+            function(authorData){
+                controller.allAuthors.push(controller.authorModel.mapToModel(authorData));
+            });
+    }
 
+    function setSelectedAuthor (author){
+        controller.selectedAuthor = angular.copy(author);
+    }
+
+    return controller;
   });

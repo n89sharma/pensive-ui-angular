@@ -3,11 +3,13 @@ angular
     .factory('AuthorModel', function(){
 
         var AuthorModel = {
+            model: {},
+            rawData: {},
             mapToModel: mapToModel,
             mapToData: mapToData
         };
-
-        function AuthorModel(){
+        
+        function AuthorModel(data){
         }
 
         function mapToModel(data){
@@ -20,7 +22,7 @@ angular
                 bookIds: data.bookIds
             }
         }
-
+        
         function mapToData(author){
             return {
                 id: author.id,
