@@ -2,12 +2,14 @@ angular
     .module('author')
     .factory('AuthorModel', function(){
 
-        var AuthorModel = {
-            mapToModel: mapToModel,
-            mapToData: mapToData
-        };
+//        var AuthorModel = {
+//            mapToModel: mapToModel,
+//            mapToData: mapToData
+//        };
 
         function AuthorModel(){
+            this.mapToData = mapToData;
+            this.mapToModel = mapToModel;
         }
 
         function mapToModel(data){

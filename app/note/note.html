@@ -1,15 +1,48 @@
-<div ng-controller="AuthorController as ctrl">
-    <div>
-        <p>{{ctrl.selectedAuthor.id}}</p>
-    </div>
+<div ng-controller="NoteController as ctrl">
+    <div class="panel panel-default" style="max-width:700px">
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab"
+                                                          data-toggle="tab">Write</a></li>
 
-    <button ng-click="ctrl.getAllAuthors()">Get all authors</button>
-    {{ctrl.allAuthors}}
-    <div ng-repeat=" author in ctrl.allAuthors track by $index">
-        <p>{{author}}</p>
-        <!--<p>{{author.lastName}}</p>-->
-        <!--<p>{{author.firstName}}</p>-->
-        <!--<p>{{author.bookId}}</p>-->
-        <button ng-click="ctrl.setSelectedAuthor(author)">Select</button>
+
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
+                                           data-toggle="tab">Preview</a></li>
+
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-header" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-default">
+                    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                </button>
+            </ul>
+
+            <textarea style="width:670px; max-width:670px" ng-model="ctrl.noteData"></textarea>
+            <div style="width:670px; max-width:670px" ng-bind-html="ctrl.noteHtmlData"></div>
+
+            <button type="button" class="btn btn-success" ng-click="ctrl.renderMarkdown()">Save Note</button>
+        </div>
     </div>
 </div>

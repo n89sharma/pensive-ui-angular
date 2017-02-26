@@ -1,35 +1,19 @@
-angular.module('author', ['ngRoute'])
+angular.module('note', ['ngRoute', 'ngSanitize'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/note', {
       templateUrl: 'note/note.html',
       controller: 'NoteController'
     });
   }])
-  .controller('NoteController', function(AuthorModel, $http){
-
+  .controller('NoteController', function(AuthorModel, $http, $sanitize){
     var controller = {
-        selectedNote:{},
-        allNotes:{},
-        api: {},
-        getAllNotes: getAllNotes,
-        setSelectedNote: setSelectedNote
+        noteData: "",
+        noteHtmlData: "",
+        renderMarkdown: renderMarkdown
     };
 
-    function controller(){
-//        controller.api = new AuthorApi();
-    }
-
-    function getAllNotes(){
-//        controller.api = new AuthorApi();
-        $http
-            .get('http://localhost:8080/authors')
-            .then(function(response){
-                controller.allNotes = new NoteModel(response.data);
-                });
-    }
-
-    function setSelectedNote (note){
-        controller.selectedNote = angular.copy(note);
+    function renderMarkdown(){
+        controller.noteHtmlData = marked(controller.noteData);
     }
 
     return controller;

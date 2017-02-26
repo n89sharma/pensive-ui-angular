@@ -7,18 +7,25 @@ angular.module('author', ['ngRoute'])
   }])
   .controller('AuthorController', function(AuthorModel, $http){
 
-    var controller = {
-        api: {},
-        authorModel: {},
-        selectedAuthor:{},
-        allAuthors:{},
-        getAllAuthors: getAllAuthors,
-        setSelectedAuthor: setSelectedAuthor
-    };
+//    function AuthorController(){
+//        if(this instanceof AuthorController){
+//            this.api = {};
+//            this.authorModel = new AuthorModel();
+//            this.selectedAuthor = {};
+//            this.allAuthors = {};
+//            this.getAllAuthors = getAllAuthors;
+//            this.setSelectedAuthor = setSelectedAuthor;
+//        }
+//    }
 
-    function controller(){
-        controller.authorModel = new AuthorModel();
-    }
+    var controller ={
+        api: {},
+        authorModel: new AuthorModel(),
+        selectedAuthor: {},
+        allAuthors: [],
+        getAllAuthors : getAllAuthors,
+        setSelectedAuthor : setSelectedAuthor
+    };
 
     function getAllAuthors(){
         $http
@@ -29,6 +36,7 @@ angular.module('author', ['ngRoute'])
     }
 
     function buildAuthorList(data){
+        controller.allAuthors = [];
         data.forEach(
             function(authorData){
                 controller.allAuthors.push(controller.authorModel.mapToModel(authorData));

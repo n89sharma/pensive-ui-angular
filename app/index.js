@@ -4,7 +4,9 @@
 angular.module('pensive', [
   'ngRoute',
   'ngResource',
-  'author'
+  'ngSanitize',
+  'author',
+  'note'
 ]).
 config(function($locationProvider, $routeProvider, $resourceProvider) {
 //  $locationProvider.hashPrefix('!');
