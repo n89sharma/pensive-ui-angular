@@ -3,12 +3,13 @@
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab"
-                                                          data-toggle="tab">Write</a></li>
+                <li role="presentation" class="active" ng-click="ctrl.showRawData()">
+                    <a aria-controls="profile" role="tab" data-toggle="tab">Write</a>
+                </li>
 
-
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
-                                           data-toggle="tab">Preview</a></li>
+                <li role="presentation" ng-click="ctrl.showHtmlData()">
+                    <a aria-controls="settings" role="tab" data-toggle="tab">Preview</a>
+                </li>
 
                 <button type="button" class="btn btn-default btn-default">
                     <span class="glyphicon glyphicon-header" aria-hidden="true"></span>
@@ -39,10 +40,13 @@
                 </button>
             </ul>
 
-            <textarea style="width:670px; max-width:670px" ng-model="ctrl.noteData"></textarea>
-            <div style="width:670px; max-width:670px" ng-bind-html="ctrl.noteHtmlData"></div>
+            <textarea style="width:670px; max-width:670px" ng-model="ctrl.noteData"
+                      ng-show="!ctrl.isHtmlVisible"></textarea>
+            <div style="width:670px; max-width:670px" ng-bind-html="ctrl.noteHtmlData"
+                 ng-show="ctrl.isHtmlVisible"></div>
 
             <button type="button" class="btn btn-success" ng-click="ctrl.renderMarkdown()">Save Note</button>
+            <input ng-paste="ctrl.handlePaste($event.originalEvent)">
         </div>
     </div>
 </div>
