@@ -14,19 +14,40 @@ angular.module('note', ['ngRoute', 'ngSanitize'])
         isHtmlVisible: false,
         showRawData: showRawData,
         showHtmlData: showHtmlData,
-        handlePaste: handlePaste
+        handlePaste: handlePaste,
+        imageList: [],
+        errors:[],
+        valid: true
     };
 
+    function validateImage(){
+        var valid = true;
+        if(controller.imageList.length>4){
+            controller.errors.push('Sorry you can not have more than 5 images per note.');
+            valid = false;
+        }
+        return valid;
+    }
+
     function handlePaste (event){
-        console.log('here');
+        var reader = new FileReader();
+        reader.addEventListener("load", function(){
+            if(validateImage()){
+                controller.imageList.push(reader.result);
+                console.log(controller.imageList);
+            }
+        }, false);
+
         var clipboardData = event.clipboardData;
         angular.forEach(clipboardData.items, function(item, key){
-            console.log(clipboardData.items[key].type);
+            console.log(clipboardData.items[key]['type']);
             if (clipboardData.items[key]['type'].match(/image.*/)) {
-                var img = clipboardData.items[key].getAsFile();
-                console.log(img.size);
+                reader.readAsDataURL(clipboardData.items[key].getAsFile());
             }
         });
+        console.log('paste executed');
+
+
     };
 
     function renderMarkdown(){
@@ -39,6 +60,7 @@ angular.module('note', ['ngRoute', 'ngSanitize'])
 
     function showHtmlData(){
         controller.noteHtmlData = marked(controller.noteData);
+        console.log(controller.noteHtmlData);
         controller.isHtmlVisible  = true;
     }
 

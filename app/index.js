@@ -6,11 +6,10 @@ angular.module('pensive', [
   'ngResource',
   'ngSanitize',
   'author',
-  'note'
+  'note',
+  'content'
 ]).
 config(function($locationProvider, $routeProvider, $resourceProvider) {
-//  $locationProvider.hashPrefix('!');
-$locationProvider.html5Mode(true)
-$resourceProvider.defaults.stripTrailingSlashes = true;
-//  $routeProvider.otherwise({redirectTo: '/author'});
+    $locationProvider.html5Mode(true)
+    $routeProvider.otherwise({redirectTo: '/content'});
 });

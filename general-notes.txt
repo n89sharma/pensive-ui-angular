@@ -1,0 +1,24 @@
+Features for a note
+
+* Limit the size of the note
+* Image uploading
+    * Copy paste    - done
+    * Drag/ drop
+    * File upload
+* Math equations
+* Change the layout of the note - make it minimalistic
+* Scroll bar in the text area
+
+* Formatting options for the text in the text area.
+    * header
+    * text size
+    * bold
+    * italic
+    * list
+* Hyperlinks
+    * special paste should add hyperlink automatically
+* Save a note temporarily
+* Tag a user
+* Tag another note
+
+012345689012345689012345689012345689012345689012345689012---|70|1234567890
