@@ -2,7 +2,6 @@
     <div>
         <p>{{ctrl.selectedAuthor.id}}</p>
     </div>
-
     <button ng-click="ctrl.getAllAuthors()">Get all authors</button>
     {{ctrl.allAuthors}}
     <div ng-repeat=" author in ctrl.allAuthors track by $index">

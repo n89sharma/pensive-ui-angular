@@ -1,18 +1,18 @@
 angular
-    .module('author')
-    .factory('AuthorApi', function(AuthorModel, $http){
+  .module('author')
+  .factory('AuthorApi', function(AuthorData, $http){
 
-        var AuthorApi = {
-            authors: []
-        };
+      var AuthorApi = {
+          authors: []
+      };
 
-        function AuthorApi(){
-            $http
-                .get('http://localhost:8080/authors')
-                .then(function(response){
-                    api.authors = new AuthorModel(response.data);
-                    });
-        };
+      function AuthorApi(){
+          $http
+              .get('http://localhost:8080/authors')
+              .then(function(response){
+                  api.authors = new AuthorData(response.data);
+                  });
+      };
 
-        return AuthorApi;
-    });
+      return AuthorApi;
+  });

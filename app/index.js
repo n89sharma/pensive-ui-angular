@@ -2,14 +2,14 @@
 
 // Declare app level module which depends on views, and components
 angular.module('pensive', [
-  'ngRoute',
+  'ui.router',
   'ngResource',
   'ngSanitize',
   'author',
   'note',
   'content'
 ]).
-config(function($locationProvider, $routeProvider, $resourceProvider) {
-    $locationProvider.html5Mode(true)
-    $routeProvider.otherwise({redirectTo: '/content'});
+config(function($urlMatcherFactoryProvider, $locationProvider, $urlRouterProvider, $resourceProvider) {
+    $urlMatcherFactoryProvider.strictMode(false);
+    $locationProvider.html5Mode(true);
 });

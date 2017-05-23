@@ -1,5 +1,5 @@
 angular
     .module('note')
-    .factory('NoteApi', function(AuthorModel, $http){
+    .factory('NoteApi', function(AuthorData, $http){
 
     });

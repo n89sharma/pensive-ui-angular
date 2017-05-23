@@ -1,51 +1,29 @@
-angular.module('author', ['ngRoute'])
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/author', {
-      templateUrl: 'author/author.html',
-      controller: 'AuthorController'
-    });
-  }])
-  .controller('AuthorController', function(AuthorModel, $http){
+angular
+  .module('author')
+  .controller('AuthorController', AuthorController);
 
-//    function AuthorController(){
-//        if(this instanceof AuthorController){
-//            this.api = {};
-//            this.authorModel = new AuthorModel();
-//            this.selectedAuthor = {};
-//            this.allAuthors = {};
-//            this.getAllAuthors = getAllAuthors;
-//            this.setSelectedAuthor = setSelectedAuthor;
-//        }
-//    }
+function AuthorController(AuthorData, $http){
+  var vm = this;
 
-    var controller ={
-        api: {},
-        authorModel: new AuthorModel(),
-        selectedAuthor: {},
-        allAuthors: [],
-        getAllAuthors : getAllAuthors,
-        setSelectedAuthor : setSelectedAuthor
-    };
+  vm.getAllAuthors = function (){
+      $http
+          .get('http://localhost:8080/authors')
+          .then(function(response){
+              vm.buildAuthorList(response.data)
+              });
+  }
 
-    function getAllAuthors(){
-        $http
-            .get('http://localhost:8080/authors')
-            .then(function(response){
-                buildAuthorList(response.data)
-                });
-    }
+  vm.buildAuthorList = function (data){
+      vm.allAuthors = [];
+      data.forEach(
+          function(authorData){
+              vm.allAuthors.push(vm.authorData.mapToModel(authorData));
+          });
+  }
 
-    function buildAuthorList(data){
-        controller.allAuthors = [];
-        data.forEach(
-            function(authorData){
-                controller.allAuthors.push(controller.authorModel.mapToModel(authorData));
-            });
-    }
+  vm.setSelectedAuthor = function (author){
+      vm.selectedAuthor = angular.copy(author);
+  }
 
-    function setSelectedAuthor (author){
-        controller.selectedAuthor = angular.copy(author);
-    }
-
-    return controller;
-  });
+  return vm;
+}

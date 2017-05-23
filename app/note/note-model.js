@@ -1,6 +1,6 @@
 angular
     .module('note')
-    .factory('NoteModel', function(){
+    .factory('NoteData', function(){
 
 
     });

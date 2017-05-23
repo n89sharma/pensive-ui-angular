@@ -1,11 +1,8 @@
-angular.module('content', ['ngRoute', 'ngSanitize'])
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/content', {
-      templateUrl: 'content/content.html',
-      controller: 'ContentController'
-    });
-  }])
+angular
+  .module('content')
   .controller('ContentController', function($http, $sanitize){
+    var vm = this;
+
     var controller = {
         content:"something somethign dark side",
         selectedFontFamily: selectedFontFamily(),
@@ -15,22 +12,22 @@ angular.module('content', ['ngRoute', 'ngSanitize'])
         paragraphs: getData(),
         renderedParagraphs: [],
         formatParagraphs: formatParagraphs,
-        researchKeywords: researchKeywords(),
+        //researchKeywords: researchKeywords(),
         wikiExcerpts: []
     };
 
     function findWikiExcerpt(keyword){
         var wikiUrl = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=${keyword}`;
         $http.get(wikiUrl)
-                .then(function(response){
-                    var pages = response.data.query.pages;
-                    for( var key in pages){
-                        var wikiExcerpt = pages[key].extract;
-                        if(wikiExcerpt){
-                            controller.wikiExcerpts.push(formatParagraph(wikiExcerpt));
-                        }
-                    }
-                });
+          .then(function(response){
+              var pages = response.data.query.pages;
+              for( var key in pages){
+                  var wikiExcerpt = pages[key].extract;
+                  if(wikiExcerpt){
+                      controller.wikiExcerpts.push(formatParagraph(wikiExcerpt));
+                  }
+              }
+          });
     }
 
     function getWikiExcerpts(){
@@ -164,7 +161,7 @@ angular.module('content', ['ngRoute', 'ngSanitize'])
     }
 
     function formatParagraph(inputParagraph){
-        return inputParagraph.match(/.{1,70}\b/g).join('<br>');
+        return inputParagraph.paragraphContent.match(/.{1,70}\b/g).join('<br>');
     }
 
     function fontSizeOptions(){
@@ -216,8 +213,5 @@ angular.module('content', ['ngRoute', 'ngSanitize'])
     }
 
     formatParagraphs(controller.paragraphs, controller.renderedParagraphs);
-    controller.researchKeywords.forEach(function(keyword){
-        loadAndRenderWiki(keyword);
-    });
     return controller;
   });

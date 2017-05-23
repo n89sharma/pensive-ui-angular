@@ -1,11 +1,6 @@
-angular.module('note', ['ngRoute', 'ngSanitize'])
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/note', {
-      templateUrl: 'note/note.html',
-      controller: 'NoteController'
-    });
-  }])
-  .controller('NoteController', function(AuthorModel, $http, $sanitize){
+angular
+  .module('note')
+  .controller('NoteController', function(AuthorData, $http, $sanitize){
 
     var controller = {
         noteData: "",

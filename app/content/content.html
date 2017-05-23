@@ -30,15 +30,11 @@
 <link href="http://fonts.googleapis.com/css?family=Libre Baskerville" rel="stylesheet" type="text/css">
 
 <div ng-controller="ContentController as ctrl">
-
     <select ng-options="option for option in ctrl.fontFamilyOptions"
             ng-model="ctrl.selectedFontFamily"></select>
-
     <select ng-options="option for option in ctrl.fontSizeOptions"
             ng-model="ctrl.selectedFontSize"></select>
     <div >
-
-
         <div id="mainContent"
              style="font-family: {{ctrl.selectedFontFamily}}; font-size: {{ctrl.selectedFontSize}}; width: 650px; max-width: 650px; float:left">
             <p ng-repeat="paragraph in ctrl.renderedParagraphs" ng-bind-html="paragraph"></p>
@@ -47,9 +43,5 @@
         <div style="font-family: {{ctrl.selectedFontFamily}}; font-size: {{ctrl.selectedFontSize}}; width: 650px; max-width: 650px; float:right">
             <p ng-bind-html="excerpt" ng-repeat="excerpt in ctrl.wikiExcerpts"></p>
         </div>
-
-
     </div>
-
-
 </div>
