@@ -1,3 +1,8 @@
+1) Gulp shouldn't build until all the dependencies are installed
+2) angular refresh issue
+3)
+
+
 Features for a note
 
 * Limit the size of the note
@@ -20,5 +25,3 @@ Features for a note
 * Save a note temporarily
 * Tag a user
 * Tag another note
-
-012345689012345689012345689012345689012345689012345689012---|70|1234567890

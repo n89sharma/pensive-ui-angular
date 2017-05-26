@@ -1,5 +1,5 @@
-(function(){
-  angular.module('content', ['ui.router', 'ngSanitize'])
+angular
+    .module('content', ['ui.router', 'ngSanitize', 'PensiveCommon'])
     .config(['$stateProvider', '$urlMatcherFactoryProvider', function($stateProvider, $urlMatcherFactoryProvider) {
       $urlMatcherFactoryProvider.strictMode(false);
       $stateProvider
@@ -8,4 +8,3 @@
           templateUrl: 'content/content.html'
         });
     }]);
-}());

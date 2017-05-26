@@ -1,5 +1,5 @@
-(function(){
-  angular.module('note', ['ui.router', 'ngSanitize'])
+angular
+    .module('note', ['ui.router', 'ngSanitize'])
     .config(['$stateProvider', '$urlMatcherFactoryProvider', function($stateProvider, $urlMatcherFactoryProvider) {
       $urlMatcherFactoryProvider.strictMode(false);
       $stateProvider
@@ -8,4 +8,3 @@
           templateUrl: 'note/note.html'
         });
     }]);
-}());
