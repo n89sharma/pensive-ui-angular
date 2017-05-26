@@ -1,35 +1,26 @@
 angular
   .module('note')
-  .controller('NoteController', function(AuthorData, $http, $sanitize){
+  .controller('NoteController', NoteController);
+  
+  function NoteController(AuthorData, $http, $sanitize){
 
-    var controller = {
-        noteData: "",
-        noteHtmlData: "",
-        renderMarkdown: renderMarkdown,
-        isHtmlVisible: false,
-        showRawData: showRawData,
-        showHtmlData: showHtmlData,
-        handlePaste: handlePaste,
-        imageList: [],
-        errors:[],
-        valid: true
-    };
-
-    function validateImage(){
+    var vm = this;
+    
+    vm.validateImage = function () {
         var valid = true;
-        if(controller.imageList.length>4){
-            controller.errors.push('Sorry you can not have more than 5 images per note.');
+        if(vm.imageList.length>4){
+            vm.errors.push('Sorry you can not have more than 5 images per note.');
             valid = false;
         }
         return valid;
     }
 
-    function handlePaste (event){
+    vm.handlePaste = function (event) {
         var reader = new FileReader();
         reader.addEventListener("load", function(){
             if(validateImage()){
-                controller.imageList.push(reader.result);
-                console.log(controller.imageList);
+                vm.imageList.push(reader.result);
+                console.log(vm.imageList);
             }
         }, false);
 
@@ -45,19 +36,19 @@ angular
 
     };
 
-    function renderMarkdown(){
-        controller.noteHtmlData = marked(controller.noteData);
+    vm.renderMarkdown = function () {
+        vm.noteHtmlData = marked(vm.noteData);
     }
 
-    function showRawData(){
-        controller.isHtmlVisible  = false;
+    vm.showRawData = function () {
+        vm.isHtmlVisible  = false;
     }
 
-    function showHtmlData(){
-        controller.noteHtmlData = marked(controller.noteData);
-        console.log(controller.noteHtmlData);
-        controller.isHtmlVisible  = true;
+    vm.showHtmlData = function () {
+        vm.noteHtmlData = marked(vm.noteData);
+        console.log(vm.noteHtmlData);
+        vm.isHtmlVisible  = true;
     }
 
-    return controller;
-  });
+    return vm;
+  }

@@ -20,14 +20,12 @@ function AuthorDataFactory(){
     }
 
     AuthorData.prototype.mapFromHttp = function (httpData){
-        return {
-            id: httpData.id,
-            lastName : httpData.lastName,
-            firstName : httpData.firstName,
-            careerDetails : httpData.careerDetails,
-            educationBackground : httpData.educationBackground,
-            bookIds: httpData.bookIds
-        }
+        this.id = httpData.id,
+        this.lastName = httpData.lastName,
+        this.firstName = httpData.firstName,
+        this.careerDetails = httpData.careerDetails,
+        this.educationBackground = httpData.educationBackground,
+        this.bookIds = httpData.bookIds
     }
 
     return AuthorData;

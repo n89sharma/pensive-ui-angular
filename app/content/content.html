@@ -6,29 +6,6 @@
 <link href="http://fonts.googleapis.com/css?family=Source Sans Pro" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
 
-<link href="http://fonts.googleapis.com/css?family=Droid Sans" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Noto Sans" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
-
-<link href="http://fonts.googleapis.com/css?family=Slabo 27px" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Droid Serif" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Playfair Display" rel="stylesheet" type="text/css">
-
-<link href="http://fonts.googleapis.com/css?family=PT Serif" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Noto Serif" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Crimson Text" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Bree Serif" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Wingdings" rel="stylesheet" type="text/css">
-
-
-<link href="http://fonts.googleapis.com/css?family=Libre Baskerville" rel="stylesheet" type="text/css">
-
 <div ng-controller="ContentController as ctrl">
     <select ng-options="option for option in ctrl.fontFamilyOptions"
             ng-model="ctrl.selectedFontFamily"></select>
@@ -37,7 +14,7 @@
     <div >
         <div id="mainContent"
              style="font-family: {{ctrl.selectedFontFamily}}; font-size: {{ctrl.selectedFontSize}}; width: 650px; max-width: 650px; float:left">
-            <p ng-repeat="paragraph in ctrl.renderedParagraphs" ng-bind-html="paragraph"></p>
+            <p ng-repeat="paragraph in ctrl.renderedParagraphs track by $index" ng-bind-html="paragraph"></p>
         </div>
 
         <div style="font-family: {{ctrl.selectedFontFamily}}; font-size: {{ctrl.selectedFontSize}}; width: 650px; max-width: 650px; float:right">

@@ -2,16 +2,11 @@ angular
   .module('author')
   .controller('AuthorController', AuthorController);
 
-function AuthorController(AuthorData, $http){
+function AuthorController(AuthorData, AuthorApi, $http){
   var vm = this;
 
-  vm.getAllAuthors = function (){
-      $http
-          .get('http://localhost:8080/authors')
-          .then(function(response){
-              vm.buildAuthorList(response.data)
-              });
-  }
+  vm.author = null;
+  AuthorApi.getAuthor('anId').then(function(data){vm.author = data;});
 
   vm.buildAuthorList = function (data){
       vm.allAuthors = [];
